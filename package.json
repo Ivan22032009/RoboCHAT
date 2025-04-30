@@ -1,0 +1,30 @@
+{
+  "name": "robochat",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ivan22032009/RoboCHAT.git"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "Ivan Ishcenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ivan22032009/RoboCHAT/issues"
+  },
+  "homepage": "https://github.com/Ivan22032009/RoboCHAT#readme",
+  "dependencies": {
+    "socket.io": "^4.8.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
