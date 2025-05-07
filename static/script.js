@@ -1,15 +1,20 @@
 alert("welcome to Pirate telegram");
+const socket = io();
+
 const form = document.getElementById('form');
+const message = document.getElementById('messages');
 const input = document.getElementById('input');
-const messageList = document.getElementById('message');
-form.addEventListener('submit', function (e) {
+
+form.addEventListener('submit', function(e){
     e.preventDefault();
-    const text = input.value.trim();
-    if (text !== '') {
-        const li = document.createElement('li');
-        li.textContent = text;
-        messageList.appendChild(li);
+    if(input.value){
+        socket.emit('new_message', input.value);
         input.value = '';
-        messageList.scrollTop = messageList.scrollHeight;
     }
+socket.on('massage',function(msg){
+    let item = document.createElement('li');
+    item.textContent = msg;
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+})
 });
