@@ -1,29 +1,38 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { Server } = require('socket.io');
 
-// Створити сервер
-const server = http.createServer((req, res) => {
-    const pathToIndex = path.join(__dirname, 'static', 'index.html');
-    const indexHtmlFile = fs.readFileSync(pathToIndex);
+const db = require('./database');
 
-    if (req.url === '/') {
-        return res.end(indexHtmlFile);
+const pathToIndex = path.join(__dirname,'static','index.html');
+const indexHtmlFile = fs.readFileSync(pathToIndex);
+const scriptFile = fs.readFileSync(path.join(__dirname,'static', 'script.js'));
+const styleFile = fs.readFileSync(path.join(__dirname,'static', 'style.css'));
+
+const server = http.createServer((req, res)=> {
+    switch(req.url){
+        case '/': return res.end(indexHtmlFile);
+        case '/script.js': return res.end(scriptFile);
+        case '/style.css': return res.end(styleFile);
     }
-    res.statusCode = 404;
     return res.end('Error 404');
 });
 
-// Після створення server — підключити Socket.IO
+const {Server} = require("socket.io");
 const io = new Server(server);
 
-// Обробка з'єднань
-io.on("connection", (socket) => {
-    console.log('User has connected. ID: ' + socket.id);
+io.on('connection', async (socket) => {
+  console.log('a user connected. id - ' + socket.id);
+
+  let userNickname = 'admin';
+  let messages = await db.getMessages();
+
+  socket.emit('all_messages', messages);
+
+  socket.on('new_message', (message) => {
+    db.addMessage(message, 1);
+    io.emit('message', userNickname + ' : ' + message);
+  });
 });
 
-// Запуск сервера
-server.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+server.listen(3000);

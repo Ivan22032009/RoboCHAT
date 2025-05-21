@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>RoboChat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .header {
+      width: 100%;
+      background-color: #0057d8;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    .container {
+      width: 700px;
+      max-width: 90%;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 100px;
+      overflow: hidden;
+    }
+    form {
+      background-color: #0033aa;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      color: white;
+    }
+    label {
+      margin-top: 10px;
+      margin-bottom: 5px;
+      justify-content: center;
+    }
+    input[type="text"],
+    input[type="password"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    input[type="submit"] {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">RoboChat</div>
+  <div class="container">
+    <form action="submit.html" method="post">
+      <label for="username">Логін</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Пароль</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirm-password">Повторіть пароль</label>
+      <input type="password" id="confirm-password" name="confirm-password" required>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+<script src="auth.js"></script>
+</html>

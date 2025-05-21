@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
-    <title>Document</title>
+    <title>roboChat</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
+     <main>
         <h1 class="header">RoboChat</h1>
         <ul id="message">
             <li>Test Message</li>
             <li>Hello! Test2</li>
         </ul>
         <form id="form">
-            <input type="text" id="input" placeholder="Enter message...">
+            <input type="text" id="input" placeholder="Enter message">
             <input type="submit" class="submit" value="Send">
         </form>
-    </main>
-    <script src="script.js"></script>
+     </main>
+</body>
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+<script src="script.js"></script>
 </html>
